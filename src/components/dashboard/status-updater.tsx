@@ -18,10 +18,10 @@ interface StatusUpdaterProps {
 }
 
 const statusOptions: { value: StatusOption; label: string; icon: React.ReactNode }[] = [
-  { value: 'Working', label: 'Working', icon: <Briefcase className="h-5 w-5" /> },
-  { value: 'Studying', label: 'Studying', icon: <BookOpen className="h-5 w-5" /> },
-  { value: 'Sleeping', label: 'Sleeping', icon: <Bed className="h-5 w-5" /> },
-  { value: 'Free', label: 'Free', icon: <Smile className="h-5 w-5" /> },
+  { value: 'Trabajando', label: 'Trabajando', icon: <Briefcase className="h-5 w-5" /> },
+  { value: 'Estudiando', label: 'Estudiando', icon: <BookOpen className="h-5 w-5" /> },
+  { value: 'Durmiendo', label: 'Durmiendo', icon: <Bed className="h-5 w-5" /> },
+  { value: 'Libre', label: 'Libre', icon: <Smile className="h-5 w-5" /> },
 ];
 
 export function StatusUpdater({ currentStatus, setStatus }: StatusUpdaterProps) {
@@ -32,8 +32,8 @@ export function StatusUpdater({ currentStatus, setStatus }: StatusUpdaterProps) 
     e.preventDefault();
     setStatus(tempStatus);
     toast({
-      title: 'Status Updated!',
-      description: 'Your family can now see your new status.',
+      title: '¡Estado Actualizado!',
+      description: 'Tu familia ahora puede ver tu nuevo estado.',
     });
   };
 
@@ -41,12 +41,12 @@ export function StatusUpdater({ currentStatus, setStatus }: StatusUpdaterProps) 
     <Card className="w-full shadow-lg">
       <form onSubmit={handleSubmit}>
         <CardHeader>
-          <CardTitle className="font-headline text-2xl">Update Your Status</CardTitle>
-          <CardDescription>Let your family know what you're up to.</CardDescription>
+          <CardTitle className="font-headline text-2xl">Actualiza Tu Estado</CardTitle>
+          <CardDescription>Hazle saber a tu familia qué estás haciendo.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label>What are you doing?</Label>
+            <Label>¿Qué estás haciendo?</Label>
             <RadioGroup
               value={tempStatus.type}
               onValueChange={(value: StatusOption) => setTempStatus({ ...tempStatus, type: value })}
@@ -66,16 +66,16 @@ export function StatusUpdater({ currentStatus, setStatus }: StatusUpdaterProps) 
             </RadioGroup>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="message">Add a message (optional)</Label>
+            <Label htmlFor="message">Añade un mensaje (opcional)</Label>
             <Textarea
               id="message"
-              placeholder="e.g., 'Finishing up a report, DND!'"
+              placeholder="ej., 'Terminando un informe, ¡no molestar!'"
               value={tempStatus.message}
               onChange={(e) => setTempStatus({ ...tempStatus, message: e.target.value })}
             />
           </div>
           <div className="space-y-2">
-            <Label>How are you feeling?</Label>
+            <Label>¿Cómo te sientes?</Label>
             <MoodSelector
               mood={tempStatus.mood}
               setMood={(mood) => setTempStatus({ ...tempStatus, mood })}
@@ -84,7 +84,7 @@ export function StatusUpdater({ currentStatus, setStatus }: StatusUpdaterProps) 
         </CardContent>
         <CardFooter>
           <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
-            <Send className="mr-2 h-4 w-4" /> Update
+            <Send className="mr-2 h-4 w-4" /> Actualizar
           </Button>
         </CardFooter>
       </form>

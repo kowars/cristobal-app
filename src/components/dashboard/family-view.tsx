@@ -12,10 +12,10 @@ interface FamilyViewProps {
 }
 
 const statusIcons: Record<StatusOption, React.ReactNode> = {
-  Working: <Briefcase className="h-12 w-12 text-primary" />,
-  Studying: <BookOpen className="h-12 w-12 text-primary" />,
-  Sleeping: <Bed className="h-12 w-12 text-primary" />,
-  Free: <Smile className="h-12 w-12 text-primary" />,
+  Trabajando: <Briefcase className="h-12 w-12 text-primary" />,
+  Estudiando: <BookOpen className="h-12 w-12 text-primary" />,
+  Durmiendo: <Bed className="h-12 w-12 text-primary" />,
+  Libre: <Smile className="h-12 w-12 text-primary" />,
 };
 
 export function FamilyView({ currentStatus }: FamilyViewProps) {
@@ -28,18 +28,18 @@ export function FamilyView({ currentStatus }: FamilyViewProps) {
   return (
     <Card className="w-full shadow-lg lg:sticky lg:top-28">
       <CardHeader>
-        <CardTitle className="font-headline text-2xl">Family View</CardTitle>
-        <CardDescription>This is how your family sees your status in real-time.</CardDescription>
+        <CardTitle className="font-headline text-2xl">Vista Familiar</CardTitle>
+        <CardDescription>Así es como tu familia ve tu estado en tiempo real.</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center justify-center text-center space-y-6 pt-6">
         <div className="flex items-center gap-4">
           <Avatar className="h-16 w-16">
-            <AvatarImage src="https://placehold.co/64x64.png" data-ai-hint="person" alt="User Avatar" />
-            <AvatarFallback>U</AvatarFallback>
+            <AvatarImage src="https://placehold.co/64x64.png" data-ai-hint="person" alt="Avatar de usuario" />
+            <AvatarFallback>C</AvatarFallback>
           </Avatar>
           <div>
-            <p className="font-bold text-lg">Your Name</p>
-            <p className="text-sm text-muted-foreground">is currently...</p>
+            <p className="font-bold text-lg">Cristóbal</p>
+            <p className="text-sm text-muted-foreground">está actualmente...</p>
           </div>
         </div>
 

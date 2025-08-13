@@ -1,4 +1,4 @@
-export type StatusOption = 'Working' | 'Studying' | 'Sleeping' | 'Free';
+export type StatusOption = 'Trabajando' | 'Estudiando' | 'Durmiendo' | 'Libre';
 
 export interface Status {
   type: StatusOption;
