@@ -1,6 +1,6 @@
 'use client';
 
-import { Frown, Meh, Smile, Laugh, Grin } from 'lucide-react';
+import { Frown, Meh, Smile, Laugh, SmilePlus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface MoodSelectorProps {
@@ -13,12 +13,12 @@ const moodOptions = [
   { level: 2, icon: Meh, label: 'Mal' },
   { level: 3, icon: Smile, label: 'Normal' },
   { level: 4, icon: Laugh, label: 'Bien' },
-  { level: 5, icon: Grin, label: 'Muy bien' },
+  { level: 5, icon: SmilePlus, label: 'Muy bien' },
 ];
 
 export function MoodSelector({ mood, setMood }: MoodSelectorProps) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center justify-center gap-4 py-2">
       {moodOptions.map(({level, icon: Icon, label}) => (
         <button
           key={level}
@@ -29,10 +29,10 @@ export function MoodSelector({ mood, setMood }: MoodSelectorProps) {
         >
           <Icon
             className={cn(
-              'h-8 w-8 text-muted-foreground/50 transition-colors duration-200',
-              mood === level ? 'fill-accent text-accent' : 'fill-transparent',
-              'group-hover:text-accent group-hover:fill-accent/20'
+              'h-10 w-10 text-muted-foreground/50 transition-all duration-200 ease-in-out',
+              mood === level ? 'text-accent scale-110' : 'hover:text-accent/70',
             )}
+            strokeWidth={1.5}
           />
         </button>
       ))}

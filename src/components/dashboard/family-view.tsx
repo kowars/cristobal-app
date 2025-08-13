@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Briefcase, BookOpen, Bed, Smile as SmileIcon, MessageSquare, Frown, Meh, Smile, Laugh, Grin } from 'lucide-react';
+import { Briefcase, BookOpen, Bed, Smile as SmileIcon, MessageSquare, Frown, Meh, Smile, Laugh, SmilePlus } from 'lucide-react';
 import type { Status, StatusOption } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -22,7 +22,7 @@ const moodIcons: Record<number, React.ReactNode> = {
     2: <Meh className="h-8 w-8 text-accent" />,
     3: <Smile className="h-8 w-8 text-accent" />,
     4: <Laugh className="h-8 w-8 text-accent" />,
-    5: <Grin className="h-8 w-8 text-accent" />,
+    5: <SmilePlus className="h-8 w-8 text-accent" />,
 };
 
 
