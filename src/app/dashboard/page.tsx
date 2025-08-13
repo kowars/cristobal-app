@@ -37,7 +37,7 @@ export default function DashboardPage() {
         </div>
       </header>
       <main className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-4 sm:p-8 items-start">
-        <StatusUpdater currentStatus={status} setStatus={setStatus} />
+        <StatusUpdater setStatus={setStatus} />
         <FamilyView currentStatus={status} />
       </main>
     </div>

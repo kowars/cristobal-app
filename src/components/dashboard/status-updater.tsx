@@ -13,7 +13,6 @@ import type { Status, StatusOption } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 
 interface StatusUpdaterProps {
-  currentStatus: Status;
   setStatus: Dispatch<SetStateAction<Status>>;
 }
 
@@ -24,8 +23,12 @@ const statusOptions: { value: StatusOption; label: string; icon: React.ReactNode
   { value: 'Libre', label: 'Libre', icon: <Smile className="h-5 w-5" /> },
 ];
 
-export function StatusUpdater({ currentStatus, setStatus }: StatusUpdaterProps) {
-  const [tempStatus, setTempStatus] = useState<Status>(currentStatus);
+export function StatusUpdater({ setStatus }: StatusUpdaterProps) {
+  const [tempStatus, setTempStatus] = useState<Status>({
+    type: 'Libre',
+    message: '',
+    mood: 5,
+  });
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
