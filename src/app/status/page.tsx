@@ -18,7 +18,7 @@ export default function StatusPage() {
     <div className="min-h-screen bg-background text-foreground">
        <header className="flex items-center justify-between p-4 border-b bg-card/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="flex items-center gap-2">
-           <Link href="/">
+           <Link href="/" passHref>
                 <Button variant="ghost">
                     <ChevronLeft className="mr-2 h-4 w-4" />
                     Volver
@@ -33,7 +33,7 @@ export default function StatusPage() {
         </div>
       </header>
       <main className="flex justify-center p-4 sm:p-8">
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-lg">
             <FamilyView currentStatus={status} />
         </div>
       </main>

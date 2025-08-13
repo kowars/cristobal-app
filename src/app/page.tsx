@@ -17,18 +17,22 @@ export default function WelcomePage() {
         ¿Quién eres?
       </p>
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs">
-        <Button asChild variant="outline" className="w-full h-24 text-lg flex-col gap-2">
-            <Link href="/login">
-              <User className="h-8 w-8" />
-              Cristóbal
-            </Link>
-        </Button>
-        <Button asChild className="w-full h-24 text-lg flex-col gap-2">
-          <Link href="/status">
-            <Users className="h-8 w-8" />
-            Familiar / Amigo
-          </Link>
-        </Button>
+        <Link href="/login" passHref className="w-full">
+          <Button asChild variant="outline" className="w-full h-24 text-lg flex-col gap-2">
+            <span>
+                <User className="h-8 w-8" />
+                Cristóbal
+            </span>
+          </Button>
+        </Link>
+        <Link href="/status" passHref className="w-full">
+          <Button asChild className="w-full h-24 text-lg flex-col gap-2">
+            <span>
+                <Users className="h-8 w-8" />
+                Familiar / Amigo
+            </span>
+          </Button>
+        </Link>
       </div>
     </main>
   );
