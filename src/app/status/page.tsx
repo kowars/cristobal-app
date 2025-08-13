@@ -10,7 +10,7 @@ import { ChevronLeft } from 'lucide-react';
 export default function StatusPage() {
   const [status, setStatus] = useState<Status>({
     type: 'Libre',
-    message: '¡Relajado! Siéntete libre de llamar.',
+    message: '',
     mood: 5,
   });
 

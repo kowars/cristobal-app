@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 export default function DashboardPage() {
   const [status, setStatus] = useState<Status>({
     type: 'Libre',
-    message: '¡Relajado! Siéntete libre de llamar.',
+    message: '',
     mood: 5,
   });
   const router = useRouter();
