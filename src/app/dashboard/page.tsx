@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import type { Status } from '@/lib/types';
+import { useStatusStore } from '@/lib/status-store';
 import { StatusUpdater } from '@/components/dashboard/status-updater';
 import { FamilyView } from '@/components/dashboard/family-view';
 import { Button } from '@/components/ui/button';
@@ -9,11 +8,7 @@ import { LogOut, Bell } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
-  const [status, setStatus] = useState<Status>({
-    type: 'Libre',
-    message: '',
-    mood: 5,
-  });
+  const [status, setStatus] = useStatusStore();
   const router = useRouter();
 
   return (
@@ -37,8 +32,8 @@ export default function DashboardPage() {
         </div>
       </header>
       <main className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-4 sm:p-8 items-start">
-        <StatusUpdater setStatus={setStatus} />
-        <FamilyView currentStatus={status} />
+        <StatusUpdater />
+        <FamilyView />
       </main>
     </div>
   );

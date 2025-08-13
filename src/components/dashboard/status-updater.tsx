@@ -1,6 +1,5 @@
 'use client';
 
-import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,10 +10,7 @@ import { MoodSelector } from './mood-selector';
 import { Briefcase, BookOpen, Bed, Smile, Send } from 'lucide-react';
 import type { Status, StatusOption } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
-
-interface StatusUpdaterProps {
-  setStatus: Dispatch<SetStateAction<Status>>;
-}
+import { useStatusStore } from '@/lib/status-store';
 
 const statusOptions: { value: StatusOption; label: string; icon: React.ReactNode }[] = [
   { value: 'Trabajando', label: 'Trabajando', icon: <Briefcase className="h-5 w-5" /> },
@@ -23,12 +19,9 @@ const statusOptions: { value: StatusOption; label: string; icon: React.ReactNode
   { value: 'Libre', label: 'Libre', icon: <Smile className="h-5 w-5" /> },
 ];
 
-export function StatusUpdater({ setStatus }: StatusUpdaterProps) {
-  const [tempStatus, setTempStatus] = useState<Status>({
-    type: 'Libre',
-    message: '',
-    mood: 5,
-  });
+export function StatusUpdater() {
+  const [currentStatus, setStatus] = useStatusStore();
+  const [tempStatus, setTempStatus] = useState<Status>(currentStatus);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {

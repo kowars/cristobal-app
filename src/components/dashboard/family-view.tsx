@@ -3,12 +3,9 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Briefcase, BookOpen, Bed, Smile as SmileIcon, MessageSquare, Frown, Meh, Smile, Laugh, SmilePlus } from 'lucide-react';
-import type { Status, StatusOption } from '@/lib/types';
-import { cn } from '@/lib/utils';
+import type { StatusOption } from '@/lib/types';
+import { useStatusStore } from '@/lib/status-store';
 
-interface FamilyViewProps {
-  currentStatus: Status;
-}
 
 const statusIcons: Record<StatusOption, React.ReactNode> = {
   Trabajando: <Briefcase className="h-12 w-12 text-primary" />,
@@ -26,7 +23,8 @@ const moodIcons: Record<number, React.ReactNode> = {
 };
 
 
-export function FamilyView({ currentStatus }: FamilyViewProps) {
+export function FamilyView() {
+  const [currentStatus] = useStatusStore();
   const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
