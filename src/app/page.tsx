@@ -7,6 +7,14 @@ import { User, Users } from 'lucide-react';
 export default function WelcomePage() {
   const router = useRouter();
 
+  const handleFamilyClick = () => {
+    router.push('/status');
+  };
+
+  const handleCristobalClick = () => {
+    router.push('/login');
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-background p-8 text-center">
       <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg mb-4">
@@ -22,14 +30,14 @@ export default function WelcomePage() {
         <Button 
           variant="outline" 
           className="w-full h-24 text-lg flex-col gap-2" 
-          onClick={() => router.push('/login')}
+          onClick={handleCristobalClick}
         >
           <User className="h-8 w-8" />
           Cristóbal
         </Button>
         <Button 
           className="w-full h-24 text-lg flex-col gap-2"
-          onClick={() => router.push('/status')}
+          onClick={handleFamilyClick}
         >
           <Users className="h-8 w-8" />
           Familiar / Amigo
