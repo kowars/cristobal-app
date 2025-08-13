@@ -1,20 +1,10 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { User, Users } from 'lucide-react';
+import Link from 'next/link';
 
 export default function WelcomePage() {
-  const router = useRouter();
-
-  const handleFamilyClick = () => {
-    router.push('/status');
-  };
-
-  const handleCristobalClick = () => {
-    router.push('/login');
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-background p-8 text-center">
       <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg mb-4">
@@ -27,21 +17,23 @@ export default function WelcomePage() {
         ¿Quién eres?
       </p>
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs">
-        <Button 
-          variant="outline" 
-          className="w-full h-24 text-lg flex-col gap-2" 
-          onClick={handleCristobalClick}
-        >
-          <User className="h-8 w-8" />
-          Cristóbal
-        </Button>
-        <Button 
-          className="w-full h-24 text-lg flex-col gap-2"
-          onClick={handleFamilyClick}
-        >
-          <Users className="h-8 w-8" />
-          Familiar / Amigo
-        </Button>
+        <Link href="/login" className="w-full">
+          <Button 
+            variant="outline" 
+            className="w-full h-24 text-lg flex-col gap-2" 
+          >
+            <User className="h-8 w-8" />
+            Cristóbal
+          </Button>
+        </Link>
+        <Link href="/status" className="w-full">
+          <Button 
+            className="w-full h-24 text-lg flex-col gap-2"
+          >
+            <Users className="h-8 w-8" />
+            Familiar / Amigo
+          </Button>
+        </Link>
       </div>
     </main>
   );
