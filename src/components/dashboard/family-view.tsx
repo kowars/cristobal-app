@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Star, Briefcase, BookOpen, Bed, Smile, MessageSquare } from 'lucide-react';
+import { Briefcase, BookOpen, Bed, Smile as SmileIcon, MessageSquare, Frown, Meh, Smile, Laugh, Grin } from 'lucide-react';
 import type { Status, StatusOption } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -14,8 +14,17 @@ const statusIcons: Record<StatusOption, React.ReactNode> = {
   Trabajando: <Briefcase className="h-12 w-12 text-primary" />,
   Estudiando: <BookOpen className="h-12 w-12 text-primary" />,
   Durmiendo: <Bed className="h-12 w-12 text-primary" />,
-  Libre: <Smile className="h-12 w-12 text-primary" />,
+  Libre: <SmileIcon className="h-12 w-12 text-primary" />,
 };
+
+const moodIcons: Record<number, React.ReactNode> = {
+    1: <Frown className="h-8 w-8 text-accent" />,
+    2: <Meh className="h-8 w-8 text-accent" />,
+    3: <Smile className="h-8 w-8 text-accent" />,
+    4: <Laugh className="h-8 w-8 text-accent" />,
+    5: <Grin className="h-8 w-8 text-accent" />,
+};
+
 
 export function FamilyView({ currentStatus }: FamilyViewProps) {
   const [animationKey, setAnimationKey] = useState(0);
@@ -53,16 +62,10 @@ export function FamilyView({ currentStatus }: FamilyViewProps) {
             </h2>
 
             <div className="flex justify-center items-center gap-1 animate-in fade-in-0 slide-in-from-bottom-5 duration-500 [animation-delay:100ms]">
-            {[1, 2, 3, 4, 5].map((level) => (
-                <Star
-                key={level}
-                className={cn('h-6 w-6 transition-colors duration-300', 
-                    currentStatus.mood >= level
-                    ? 'text-accent fill-accent'
-                    : 'text-muted-foreground/30'
-                )}
-                />
-            ))}
+                <p className="text-sm text-muted-foreground mr-2">Mi estado de ánimo es:</p>
+                <div className="w-10 h-10 flex items-center justify-center">
+                 {moodIcons[currentStatus.mood] || moodIcons[3]}
+                </div>
             </div>
 
             {currentStatus.message && (
