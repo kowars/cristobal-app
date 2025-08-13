@@ -32,7 +32,6 @@ export default function DashboardPage() {
             <span className="sr-only">Notificaciones</span>
           </Button>
           <Avatar>
-            <AvatarImage src="https://placehold.co/40x40.png" data-ai-hint="person" alt="User Avatar" />
             <AvatarFallback>C</AvatarFallback>
           </Avatar>
           <Button variant="ghost" size="icon" onClick={() => router.push('/')}>

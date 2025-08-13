@@ -34,7 +34,6 @@ export function FamilyView({ currentStatus }: FamilyViewProps) {
       <CardContent className="flex flex-col items-center justify-center text-center space-y-6 pt-6">
         <div className="flex items-center gap-4">
           <Avatar className="h-16 w-16">
-            <AvatarImage src="https://placehold.co/64x64.png" data-ai-hint="person" alt="Avatar de usuario" />
             <AvatarFallback>C</AvatarFallback>
           </Avatar>
           <div>
