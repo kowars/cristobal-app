@@ -4,7 +4,6 @@ import { useState } from 'react';
 import type { Status } from '@/lib/types';
 import { StatusUpdater } from '@/components/dashboard/status-updater';
 import { FamilyView } from '@/components/dashboard/family-view';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { LogOut, Bell } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -31,9 +30,6 @@ export default function DashboardPage() {
             <Bell className="h-5 w-5 text-primary"/>
             <span className="sr-only">Notificaciones</span>
           </Button>
-          <Avatar>
-            <AvatarFallback>C</AvatarFallback>
-          </Avatar>
           <Button variant="ghost" size="icon" onClick={() => router.push('/')}>
             <LogOut className="h-5 w-5 text-primary"/>
             <span className="sr-only">Cerrar Sesión</span>

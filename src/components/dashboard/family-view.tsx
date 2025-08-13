@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Star, Briefcase, BookOpen, Bed, Smile, MessageSquare } from 'lucide-react';
 import type { Status, StatusOption } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -32,14 +31,9 @@ export function FamilyView({ currentStatus }: FamilyViewProps) {
         <CardDescription>Así es como tu familia ve tu estado en tiempo real.</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center justify-center text-center space-y-6 pt-6">
-        <div className="flex items-center gap-4">
-          <Avatar className="h-16 w-16">
-            <AvatarFallback>C</AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="font-bold text-lg">Cristóbal</p>
-            <p className="text-sm text-muted-foreground">está actualmente...</p>
-          </div>
+        <div className="flex flex-col items-center gap-2">
+          <p className="font-bold text-lg">Cristóbal</p>
+          <p className="text-sm text-muted-foreground">está actualmente...</p>
         </div>
 
         <div className="relative w-48 h-48 flex items-center justify-center">
