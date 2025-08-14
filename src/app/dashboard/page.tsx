@@ -8,7 +8,7 @@ import { LogOut, Bell } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
-  const [status, setStatus] = useStatusStore();
+  const { syncedStatus: status, loading } = useStatusStore();
   const router = useRouter();
 
   return (
@@ -42,4 +42,4 @@ export default function DashboardPage() {
         )}
       </main>
     </div>
-  );
+  )}

@@ -9,6 +9,7 @@ import { db } from './firebase'; // Import Firestore instance
 const defaultStatus: Status = {
   type: 'Libre',
   mood: 5,
+  message: ''
 };
 
 export const statusStore = {
@@ -59,5 +60,5 @@ export function useStatusStore() {
     statusStore.updateStatus(newStatus);
   }, []);
 
-  return [syncedStatus, setStatus] as const;
+  return { syncedStatus, loading, setStatus };
 }
