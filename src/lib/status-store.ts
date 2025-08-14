@@ -1,49 +1,57 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 import type { Status } from './types';
+import { db } from './firebase'; // Import Firestore instance
 
 // Estado inicial por defecto
 const defaultStatus: Status = {
   type: 'Libre',
-  message: '',
   mood: 5,
 };
 
-let status: Status = { ...defaultStatus };
-let listeners: Array<(status: Status) => void> = [];
-
-const broadcast = () => {
-  listeners.forEach((listener) => {
-    listener(status);
-  });
-};
-
 export const statusStore = {
-  updateStatus: (newStatus: Status) => {
-    status = newStatus;
-    broadcast();
+  updateStatus: async (newStatus: Status) => {
+    // For now, using a fixed document ID 'user-status'
+    console.log("Starting status update in Firestore...");
+    try {
+      await setDoc(doc(db, 'statuses', 'user-status'), newStatus);
+      console.log("Status updated successfully in Firestore.");
+    } catch (error) {
+      console.error("Error updating status in Firestore:", error);
+    }
   },
-  subscribe: (listener: (status: Status) => void): (() => void) => {
-    listeners.push(listener);
-    // Devuelve una función para desuscribirse
-    return () => {
-      listeners = listeners.filter(l => l !== listener);
-    };
-  },
-  getSnapshot: (): Status => {
-    return status;
-  }
 };
 
 // Un custom hook para usar el store fácilmente en los componentes
 export function useStatusStore() {
-  const [syncedStatus, setSyncedStatus] = useState(statusStore.getSnapshot());
+  const [syncedStatus, setSyncedStatus] = useState<Status | null>(null); // Initialize with null
+  const [loading, setLoading] = useState(true);
+  const isInitialLoad = useRef(true);
 
   useEffect(() => {
-    // Nos suscribimos a los cambios
-    const unsubscribe = statusStore.subscribe(setSyncedStatus);
-    // Y nos desuscribimos al desmontar el componente
+    const statusDocRef = doc(db, 'statuses', 'user-status');
+
+    // Set up a real-time listener to the Firestore document
+    const unsubscribe = onSnapshot(statusDocRef, (docSnap) => {
+      if (isInitialLoad.current) {
+        isInitialLoad.current = false;
+        setLoading(false);
+      }
+      if (docSnap.exists()) {
+        setSyncedStatus(docSnap.data() as Status);
+      } else {
+        setSyncedStatus({ ...defaultStatus });
+      }
+    }, (error) => {
+      console.error("Error fetching status:", error);
+      if (isInitialLoad.current) {
+        isInitialLoad.current = false;
+        setLoading(false);
+      }
+    });
+    // Clean up the listener on unmount
     return () => unsubscribe();
   }, []);
 

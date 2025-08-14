@@ -24,7 +24,7 @@ const moodIcons: Record<number, React.ReactNode> = {
 
 
 export function FamilyView() {
-  const [currentStatus] = useStatusStore();
+  const [currentStatus, , loading] = useStatusStore();
   const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
@@ -40,39 +40,47 @@ export function FamilyView() {
       <CardContent className="flex flex-col items-center justify-center text-center space-y-6 pt-6">
         <div className="flex flex-col items-center gap-2">
           <p className="font-bold text-lg">Cristóbal</p>
-          <p className="text-sm text-muted-foreground">está actualmente...</p>
+          <p className="text-sm text-muted-foreground">
+            {loading ? 'Cargando estado...' : 'está actualmente...'}
+          </p>
         </div>
 
-        <div className="relative w-48 h-48 flex items-center justify-center">
-            <div className="absolute inset-0 bg-accent/10 rounded-full animate-pulse" />
-            <div className="absolute inset-2 bg-secondary/10 rounded-full animate-pulse [animation-delay:-2s]" />
-             <div
+        {!loading && currentStatus ? (
+          <>
+            <div className="relative w-48 h-48 flex items-center justify-center">
+              <div className="absolute inset-0 bg-accent/10 rounded-full animate-pulse" />
+              <div className="absolute inset-2 bg-secondary/10 rounded-full animate-pulse [animation-delay:-2s]" />
+              <div
                 key={animationKey}
                 className="p-6 bg-card rounded-full shadow-md animate-in fade-in zoom-in-95 duration-500"
-            >
+              >
                 {statusIcons[currentStatus.type]}
+              </div>
             </div>
-        </div>
 
-        <div className="space-y-4 w-full" key={`content-${animationKey}`}>
-            <h2 className="text-3xl font-bold font-headline text-primary animate-in fade-in-0 slide-in-from-bottom-5 duration-500">
+            <div className="space-y-4 w-full" key={`content-${animationKey}`}>
+              <h2 className="text-3xl font-bold font-headline text-primary animate-in fade-in-0 slide-in-from-bottom-5 duration-500">
                 {currentStatus.type}
-            </h2>
+              </h2>
 
-            <div className="flex justify-center items-center gap-1 animate-in fade-in-0 slide-in-from-bottom-5 duration-500 [animation-delay:100ms]">
+              <div className="flex justify-center items-center gap-1 animate-in fade-in-0 slide-in-from-bottom-5 duration-500 [animation-delay:100ms]">
                 <p className="text-sm text-muted-foreground mr-2">Mi estado de ánimo es:</p>
                 <div className="w-10 h-10 flex items-center justify-center">
-                 {moodIcons[currentStatus.mood] || moodIcons[3]}
+                  {moodIcons[currentStatus.mood] || moodIcons[3]}
                 </div>
-            </div>
+              </div>
 
-            {currentStatus.message && (
+              {currentStatus.message && (
                 <div className="flex items-center justify-center gap-2 text-muted-foreground bg-muted p-3 rounded-lg animate-in fade-in-0 slide-in-from-bottom-5 duration-500 [animation-delay:200ms]">
-                    <MessageSquare className="h-5 w-5 flex-shrink-0" />
-                    <p className="italic text-sm">"{currentStatus.message}"</p>
+                  <MessageSquare className="h-5 w-5 flex-shrink-0" />
+                  <p className="italic text-sm">"{currentStatus.message}"</p>
                 </div>
-            )}
-        </div>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="text-center py-10">Cargando estado...</div>
+        )}
       </CardContent>
     </Card>
   );
