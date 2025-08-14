@@ -15,7 +15,7 @@ export const statusStore = {
   updateStatus: async (newStatus: Status) => {
     // For now, using a fixed document ID 'user-status'
     console.log("Starting status update in Firestore...");
-    try {
+    try {    
       await setDoc(doc(db, 'statuses', 'user-status'), newStatus);
       console.log("Status updated successfully in Firestore.");
     } catch (error) {
@@ -31,7 +31,7 @@ export function useStatusStore() {
   const isInitialLoad = useRef(true);
 
   useEffect(() => {
-    const statusDocRef = doc(db, 'statuses', 'user-status');
+    const statusDocRef = doc(db, 'userStatuses', 'main-status');
 
     // Set up a real-time listener to the Firestore document
     const unsubscribe = onSnapshot(statusDocRef, (docSnap) => {
