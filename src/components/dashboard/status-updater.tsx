@@ -10,7 +10,7 @@ import { MoodSelector } from './mood-selector';
 import { Briefcase, BookOpen, Bed, Smile, Send } from 'lucide-react';
 import type { Status, StatusOption } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
-import { useStatusStore } from '@/lib/status-store';
+import { useStatusStore, defaultStatus } from '@/lib/status-store';
 
 const statusOptions: { value: StatusOption; label: string; icon: React.ReactNode }[] = [
   { value: 'Trabajando', label: 'Trabajando', icon: <Briefcase className="h-5 w-5" /> },
@@ -20,8 +20,8 @@ const statusOptions: { value: StatusOption; label: string; icon: React.ReactNode
 ];
 
 export function StatusUpdater() {
-  const [currentStatus, setStatus] = useStatusStore();
-  const [tempStatus, setTempStatus] = useState<Status>(currentStatus);
+  const { syncedStatus: currentStatus, setStatus } = useStatusStore();
+  const [tempStatus, setTempStatus] = useState<Status>(currentStatus || defaultStatus);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {

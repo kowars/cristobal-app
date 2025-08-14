@@ -24,7 +24,7 @@ const moodIcons: Record<number, React.ReactNode> = {
 
 
 export function FamilyView() {
-  const [currentStatus, , loading] = useStatusStore();
+  const { syncedStatus: currentStatus, loading } = useStatusStore();
   const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export function FamilyView() {
                 key={animationKey}
                 className="p-6 bg-card rounded-full shadow-md animate-in fade-in zoom-in-95 duration-500"
               >
-                {statusIcons[currentStatus.type]}
+                {statusIcons[currentStatus!.type]}
               </div>
             </div>
 
@@ -62,11 +62,10 @@ export function FamilyView() {
               <h2 className="text-3xl font-bold font-headline text-primary animate-in fade-in-0 slide-in-from-bottom-5 duration-500">
                 {currentStatus.type}
               </h2>
-
               <div className="flex justify-center items-center gap-1 animate-in fade-in-0 slide-in-from-bottom-5 duration-500 [animation-delay:100ms]">
                 <p className="text-sm text-muted-foreground mr-2">Mi estado de ánimo es:</p>
                 <div className="w-10 h-10 flex items-center justify-center">
-                  {moodIcons[currentStatus.mood] || moodIcons[3]}
+                  {moodIcons[currentStatus!.mood] || moodIcons[3]}
                 </div>
               </div>
 
